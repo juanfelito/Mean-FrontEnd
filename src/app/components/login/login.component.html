@@ -1,0 +1,24 @@
+<div class="col-lg-5">
+    <h1 class="h1-strong">{{title}}</h1>
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Successfully logged in!
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Failed login, please check your information.
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-lg-12">
+        <p>
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" required #email="ngModel" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <span *ngIf="!email.valid && email.touched">Email is required</span>
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required #password="ngModel" [(ngModel)]="user.password">
+            <span *ngIf="!password.valid && password.touched">Password is required</span>
+        </p>
+        <input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!loginForm.form.valid">
+    </form>
+</div>

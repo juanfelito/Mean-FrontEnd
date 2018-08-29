@@ -1,0 +1,55 @@
+<div class="col-lg-8 pull-left">
+  <h1 class="h1-strong">
+    {{title}}
+  </h1>
+  <div class="people">
+    <div *ngFor="let user of users" class="user-item">
+      <div class="card card-default" >
+        <div class="card-body">
+          <div class="user-image pull-left">
+            <a href="">
+              <img src="{{ url + 'get-user-image/' + user.image}}" *ngIf="user.image">
+              <img src="assets/user.png" *ngIf="!user.image" class="avatar-default">
+            </a>
+          </div>
+          <div class="user-name pull-left">
+            <p class="name">
+              <a href="">
+                {{user.name + ' ' + user.surname}}              
+              </a>
+            </p>
+            <p class="nickname">
+              {{user.nick}}
+            </p>
+          </div>
+          <div class="pull-right" *ngIf="user._id != identity._id">
+            <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) < 0" (click)="followUser(user._id)">
+              <fa name="plus-circle"></fa>
+              Follow
+            </button>
+            <button class="btn btn-success" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id == followUserOver" (click)="unfollowUser(user._id)">
+              <span *ngIf="user._id == followUserOver; else following">
+                <fa name="ban"></fa>
+                Unfollow
+              </span>
+              <ng-template #following>
+                <fa name="check-circle"></fa>
+                Following
+              </ng-template>
+              
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="pagination pull-right">
+      <li *ngIf="page > 1" class="page-item"><a [routerLink]="['/people', prevPage]" class="page-link">Prev</a></li>
+      <li *ngIf="pages != page" class="page-item"><a [routerLink]="['/people', nextPage]" class="page-link">Next</a></li>
+    </ul>
+
+  </div>
+</div>
+<app-sidebar></app-sidebar>
+<div class="clearfix"></div>
+

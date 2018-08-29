@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"> {{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" *ngIf="identity">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"><fa name="home"></fa> Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/timeline']" [routerLinkActive]="['active']"><fa name="list-ul"></fa> Timeline</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/people']" [routerLinkActive]="['active']"><fa name="users"></fa> People</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" *ngIf="!identity">
+      <li class="nav-item active">
+        <a [routerLink]="['/login']" [routerLinkActive]="['active']" class="nav-link"><fa name="user"></fa> Log in</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/register']" [routerLinkActive]="['active']" class="nav-link"> Register</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" *ngIf="identity">
+      <li class="avatar">
+        <img src="{{ url + 'get-user-image/' + identity.image}}" *ngIf="identity && identity.image">
+      </li>
+      <li class="dropdown nav-item">
+        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">{{identity.name}} <span class="caret"></span> </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item">
+            <a href="#"><fa name="user-secret"></fa> Profile</a>
+          </li>
+          <li class="dropdown-item">
+            <a class="pointer" [routerLink]="['/account']" [routerLinkActive]="['active']"><fa name="cog"></fa> Account</a>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="dropdown-item">
+            <a class="pointer" (click)="logout()"><fa name="trash"></fa> Log out</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

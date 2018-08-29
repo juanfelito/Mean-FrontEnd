@@ -1,0 +1,98 @@
+
+/* Generales */
+.h1-strong{
+    font-size: 35px;
+    font-weight: bold;
+    margin-left: 13px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+/* Header */
+
+nav.navbar{
+    /* background-color: #018786!Important; */
+    margin-bottom: 15px;
+}
+.jumbotron {
+    text-align: center;
+}
+.pointer {
+    cursor: pointer;
+}
+/* nav.navbar a{
+    color: white;
+} */
+/* .btn-primary{
+    background-color: #018786!Important;
+} */
+
+.navbar-nav li.avatar {
+    width: 37px;
+    height: 37px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+
+.navbar-nav li.avatar img {
+    height: 42px;
+    width: auto;
+}
+
+.user-item .user-image img,
+.post-item .user-image img {
+    height: 85px;
+    width: auto;
+}
+
+.user-item .user-image,
+.post-item .user-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 2px;
+    margin-right: 20px;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.avatar-default {
+    width: 100%!Important;
+}
+
+.user-item .user-name {
+    margin-top: 10px;
+}
+
+.user-item .user-name .name a{
+    font-weight: bold;
+    color: #666;
+    text-decoration: none;
+}
+
+.user-item .user-name .nickname{
+    color: #969393;
+}
+
+.people {
+    min-height: 500px;
+}
+
+#posts {
+    min-height: 500px;
+}
+.post-text {
+    font-size: 1.1em;
+}
+.titnom {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.date {
+    color: grey;
+}

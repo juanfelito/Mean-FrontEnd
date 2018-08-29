@@ -1,0 +1,40 @@
+<div class="col-lg-6">
+    <h1 class="h1-strong">{{title}}</h1>
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Successfully registered!, <a [routerLink]="['/login']">Log in</a>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Failed registration! Maybe your email or your nickname are already in use, please try again with different ones.
+    </div>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-12">
+        <p>
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" required #name="ngModel" [(ngModel)]="user.name">
+            <span *ngIf="!name.valid && name.touched">Name is required</span>
+        </p>
+        <p>
+            <label for="surname">Surname</label>
+            <input type="text" name="surname" class="form-control" required #surname="ngModel" [(ngModel)]="user.surname">
+            <span *ngIf="!surname.valid && surname.touched">Surname is required</span>
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" required #email="ngModel" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <span *ngIf="!email.valid && email.touched">Email is required</span>
+        </p>
+        <p>
+            <label for="nick">Nickname</label>
+            <input type="text" name="nick" class="form-control" required #nick="ngModel" [(ngModel)]="user.nick">
+            <span *ngIf="!nick.valid && nick.touched">Nickname is required</span>
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" required #password="ngModel" [(ngModel)]="user.password">
+            <span *ngIf="!password.valid && password.touched">Password is required</span>
+        </p>
+        <input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+    </form>
+</div>

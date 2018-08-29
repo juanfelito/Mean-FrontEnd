@@ -1,0 +1,44 @@
+<div class="col-lg-4 card pull-right card-default" id="user-card">
+  <div class="card-body">
+    <div class="user-image pull-left">
+      <img src="{{ url + 'get-user-image/' + identity.image}}" *ngIf="identity.image">
+      <img src="assets/user.png" *ngIf="!identity.image" class="avatar-default">
+    </div>
+
+    <div class="user-name">
+      <a href="#">{{identity.name + ' ' + identity.surname}}</a>
+      <p class="nickname">{{identity.nick}}</p>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="stats" *ngIf="stats">
+      <div class="following-data">
+        <a href="#"><span class="stat-label">Following: </span><span class="number-stat">{{stats.following}}</span></a>
+      </div>
+      <div class="following-data">
+        <a href="#"><span class="stat-label">Followers: </span><span class="number-stat">{{stats.followedBy}}</span></a>
+      </div>
+      <div class="following-data">
+        <a href="#"><span class="stat-label">Posts: </span><span class="number-stat">{{stats.posts}}</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="new-post" class="col-lg-4 pull-right card card-default">
+  <div class="card-body">
+    <form #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)" class="col-lg-12">
+      <p>
+        <label for="text">What's on your mind?</label>
+        <textarea name="text" #text="ngModel" class="form-control" [(ngModel)]="post.text" required></textarea>
+      </p>
+      <p>
+        <label>Upload an image</label>
+        <input type="file" name="file" placeholder="Upload your image">
+      </p>
+      <input type="submit" value="Post" class="btn btn-primary" [disabled]="!newPostForm.form.valid">
+    </form>
+  </div>
+</div>

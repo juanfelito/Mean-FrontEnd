@@ -1,0 +1,13 @@
+#posts {
+    min-height: 500px;
+}
+.post-text {
+    font-size: 1.1em;
+}
+.titnom {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.date {
+    color: grey;
+}
