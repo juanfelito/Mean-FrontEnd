@@ -89,4 +89,8 @@ export class TimelineComponent implements OnInit {
     this.page += 1;
     this.getPosts(this.page, true);
   }
+
+  refresh (event) {
+    this.getPosts(1);
+  }
 }
