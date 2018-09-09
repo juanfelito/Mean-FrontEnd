@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../../models/post';
 import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { PostService } from '../../services/post.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GLOBAL } from '../../services/global';
+// import $  from 'jquery';
 
 @Component({
   selector: 'app-posts',
@@ -26,6 +27,7 @@ export class PostsComponent implements OnInit {
   public posts: Post[];
   public itemsPerPage;
   public noMore = false;
+  @Input() user: String;
 
   constructor(
     private _route: ActivatedRoute,
@@ -41,11 +43,11 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPosts(this.page);
+    this.getPosts(this.user, this.page);
   }
 
-  getPosts (page, adding = false) {
-    this._postService.getPosts(this.token, page).subscribe(
+  getPosts (user, page, adding = false) {
+    this._postService.getUserPosts(this.token, user, page).subscribe(
       response => {
         if (response.posts) {
           this.total = response.totalItems;
@@ -86,6 +88,6 @@ export class PostsComponent implements OnInit {
     }
 
     this.page += 1;
-    this.getPosts(this.page, true);
+    this.getPosts(this.user, this.page, true);
   }
 }

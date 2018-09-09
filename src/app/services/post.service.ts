@@ -28,6 +28,12 @@ export class PostService {
     return this._http.get(this.url + 'posts/' + page, {headers: headers});
   }
 
+  getUserPosts (token, user_id, page = 1): Observable <any> {
+    let headers = new HttpHeaders().set('Content-type', 'application/json')
+                                   .set('Authorization', token);
+    return this._http.get(this.url + 'user-posts/' + user_id + '/' + page, {headers: headers});
+  }
+
   deletePost (token, id): Observable <any> {
     let headers = new HttpHeaders().set('Content-type', 'application/json')
                                    .set('Authorization', token);
